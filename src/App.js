@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import Timeline from './Timeline';
+import ItemTimeline from './ItemTimeline';
 import request from "superagent";
 import Task from "./Task"
 
@@ -27,7 +27,6 @@ class App extends Component {
 
   viewProject = (e) => {
     const projId = e.currentTarget.id
-    console.log('http://localhost:9292/projects/'+projId+"/tasks")
     request
       .get('http://localhost:9292/projects/'+projId+"/tasks")
       .end((err, res) => {
@@ -44,7 +43,7 @@ class App extends Component {
     return (
       <div>
 
-      {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <Task selectedProject={this.state.selectedProject}/>}
+      {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <ItemTimeline selectedProject={this.state.selectedProject}/>}
 
         
        
