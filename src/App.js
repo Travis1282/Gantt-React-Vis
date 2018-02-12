@@ -11,10 +11,10 @@ function randomDate(start, end) {
 }
 const getProjets = count =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
-    id: `item-${k}`,
+    id: `${k}`,
     name: `project ${k}`,
-    startdate: `start date`+randomDate(new Date(2018, 0, 1), new Date(2018,12,31)) +``,
-    enddate: `end date` +randomDate(new Date(2019, 0, 1), new Date(2019,12,31)) +``,
+    start: ``+randomDate(new Date(2018, 0, 1), new Date(2018,12,31)) +``,
+    end: `` +randomDate(new Date(2019, 0, 1), new Date(2019,12,31)) +``,
     completed: false,
     // user_id INT references users(id)
 
@@ -22,12 +22,11 @@ const getProjets = count =>
 
 const getTasks = count =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
-    id: `item-${k}`,
+    id: `${k}`,
     name: `task ${k}`,
-    startdate: `start date`+randomDate(new Date(2018, 0, 1), new Date(2018,12,31)) +``,
-    enddate: `end date` +randomDate(new Date(2019, 0, 1), new Date(2019,12,31)) +``,
+    start: ``+randomDate(new Date(2018, 0, 1), new Date(2018,12,31)) +``,
+    end: `` +randomDate(new Date(2019, 0, 1), new Date(2019,12,31)) +``,
     completed: false,
-    length: ``+ this.startdate - this.enddate +``
     // user_id INT references users(id)
 
   }));
