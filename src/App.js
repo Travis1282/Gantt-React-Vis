@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import Timeline from './Timeline';
+import ItemTimeline from './ItemTimeline';
 import request from "superagent";
 import Task from "./Task"
 
@@ -44,8 +44,8 @@ class App extends Component {
     return (
       <div>
 
-      {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <Task selectedProject={this.state.selectedProject}/>}
-
+      {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <itemTimeline selectedProject={this.state.selectedProject}/>}
+      
         
        
       </div>
