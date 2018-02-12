@@ -27,7 +27,6 @@ class App extends Component {
 
   viewProject = (e) => {
     const projId = e.currentTarget.id
-    console.log('http://localhost:9292/projects/'+projId+"/tasks")
     request
       .get('http://localhost:9292/projects/'+projId+"/tasks")
       .end((err, res) => {
@@ -44,8 +43,13 @@ class App extends Component {
     return (
       <div>
 
+<<<<<<< HEAD
       {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <itemTimeline selectedProject={this.state.selectedProject}/>}
       
+=======
+      {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <ItemTimeline selectedProject={this.state.selectedProject}/>}
+
+>>>>>>> 7463a599a8df9bce0079660723a32939be4d2376
         
        
       </div>

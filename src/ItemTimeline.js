@@ -2,16 +2,6 @@ import React, { Component } from 'react';
 import './App.js'
 import Timeline from 'react-visjs-timeline'
 
-const options = {
-  width: '100%',
-  height: '100%',
-  stack: false,
-  showMajorLabels: true,
-  showCurrentTime: true,
-  zoomMin: 1000000000,
-  zoomMax: 100000000000,
-  type: 'background'
-}
 
 
 const items = [{
@@ -19,6 +9,21 @@ const items = [{
   end: new Date(2010, 8, 2),  // end is optional
   content: 'Trajectory A',
 }]
+  height: '500px',
+  stack: false,
+  showMajorLabels: true,
+  showCurrentTime: true,
+  zoomMin: 1000000,
+  // zoomMax: 10000000,
+  type: 'background',
+  format: {
+    minorLabels: {
+      minute: 'h:mma',
+      hour: 'ha'
+    }
+  }
+}
+
 
 // dynamic styling 
   const getItemStyle = () => ({
@@ -29,27 +34,21 @@ const items = [{
 
 // style={getItemStyle()}
 
-class ItemTimeline extends Component {
-//     constructor(props){
-//     super(props)
-//     this.state = {
-//       start: new Date('December 17, 1995 03:24:00'),
-//       end: new Date('December 30, 1995 03:24:00'),
-//     }
-  // }
-
-
-
+  constructor(props){
+    super(props)
+    this.state = {
+      items: this.props.selectedProject
+    }
+  }
 
   render(){
-    //console.log([this.state])
-
-   return (
-      <div>
-        <Timeline options={options} items={items} />
-      </div>
-    );
-
+    console.log(this.state.items)
+  return (
+    <div>
+      <Timeline options={options} items={this.state.items}/>
+      Timeline
+    </div>
+  );
   }
 }
 export default ItemTimeline;    
