@@ -9,8 +9,13 @@ const options = {
   showMajorLabels: true,
   showCurrentTime: true,
   zoomMin: 1000000,
-  // zoomMax: 10000000,
-  type: 'background',
+  zoomMax: 100000000000,
+  orientation: 'top',
+  selectable: true,
+  stack: true,
+  stackSubgroups: true,
+  // clickToUse: true,
+  groupEditable: true,
   format: {
     minorLabels: {
       minute: 'h:mma',
@@ -19,13 +24,7 @@ const options = {
   }
 }
 
-// const items = [{
-//     start: new Date(2010, 7, 15),
-//     end: new Date(2010, 8, 2),  // end is optional
-//     content: 'Trajectory A',
-//   }]
 
-// dynamic styling 
   const getItemStyle = () => ({
       width: ``+ this.length +``,
       background: 'lightgreen'
@@ -35,6 +34,7 @@ const options = {
 // style={getItemStyle()}
 
 class ItemTimeline extends Component {
+
   constructor(props){
     super(props)
     this.state = {

@@ -46,7 +46,6 @@ class App extends Component {
 
       {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <ItemTimeline selectedProject={this.state.selectedProject}/>}
 
-        
        
       </div>
     );
