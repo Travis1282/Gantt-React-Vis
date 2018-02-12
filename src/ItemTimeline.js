@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import './App.js'
 import Timeline from 'react-visjs-timeline'
 
-
-
-const items = [{
-  start: new Date(2010, 7, 15),
-  end: new Date(2010, 8, 2),  // end is optional
-  content: 'Trajectory A',
-}]
+const options = {
+  width: '100%',
   height: '500px',
   stack: false,
   showMajorLabels: true,
   showCurrentTime: true,
   zoomMin: 1000000,
-  // zoomMax: 10000000,
-  type: 'background',
+  zoomMax: 100000000000,
+  orientation: 'top',
+  selectable: true,
+  stack: true,
+  stackSubgroups: true,
+  // clickToUse: true,
+  groupEditable: true,
   format: {
     minorLabels: {
       minute: 'h:mma',
@@ -25,7 +25,6 @@ const items = [{
 }
 
 
-// dynamic styling 
   const getItemStyle = () => ({
       width: ``+ this.length +``,
       background: 'lightgreen'
@@ -33,6 +32,8 @@ const items = [{
   });
 
 // style={getItemStyle()}
+
+class ItemTimeline extends Component {
 
   constructor(props){
     super(props)
@@ -49,6 +50,7 @@ const items = [{
       Timeline
     </div>
   );
+
   }
 }
 export default ItemTimeline;    

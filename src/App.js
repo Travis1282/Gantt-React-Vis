@@ -38,19 +38,13 @@ class App extends Component {
 
   render() {
     const projectList = this.state.projects.map((project, i) => {
-      return <li key={i} id={project.id} onClick={this.viewProject}> {project.name} </li>
+      return <li key={i} id={project.id} onClick={this.viewProject}> {project.content} </li>
     })
     return (
       <div>
 
-<<<<<<< HEAD
-      {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <itemTimeline selectedProject={this.state.selectedProject}/>}
-      
-=======
       {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <ItemTimeline selectedProject={this.state.selectedProject}/>}
 
->>>>>>> 7463a599a8df9bce0079660723a32939be4d2376
-        
        
       </div>
     );
