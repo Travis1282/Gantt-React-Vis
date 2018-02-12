@@ -22,6 +22,7 @@ class App extends Component {
           if (err) console.log(err)
           const parsedData = JSON.parse(res.text);
           this.setState({projects: [...parsedData]})
+          console.log(this.state)
       })
   }
 
@@ -38,7 +39,7 @@ class App extends Component {
 
   render() {
     const projectList = this.state.projects.map((project, i) => {
-      return <li key={i} id={project.id} onClick={this.viewProject}> {project.name} </li>
+      return <li key={i} id={project.id} onClick={this.viewProject}> {project.content} </li>
     })
     return (
       <div>

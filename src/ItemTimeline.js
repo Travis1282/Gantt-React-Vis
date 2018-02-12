@@ -4,7 +4,7 @@ import Timeline from 'react-visjs-timeline'
 
 const options = {
   width: '100%',
-  height: '500px',
+  height: '90vh',
   stack: false,
   showMajorLabels: true,
   showCurrentTime: true,
