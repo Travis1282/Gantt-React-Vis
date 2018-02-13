@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "react": "^16.2.0",
+    "react-day-picker": "^7.0.7",
     "react-dom": "^16.2.0",
+    "react-helmet": "^5.2.0",
     "react-scripts": "1.1.1",
     "react-visjs-timeline": "^1.4.0",
     "superagent": "^3.8.2",

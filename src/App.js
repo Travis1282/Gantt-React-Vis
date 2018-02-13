@@ -29,13 +29,39 @@ class App extends Component {
   viewProject = (e) => {
     const projId = e.currentTarget.id
     request
-      .get('http://localhost:9292/projects/'+projId+"/tasks")
+      .get('http://localhost:9292/projects/'+projId+'/tasks')
       .end((err, res) => {
         if (err) console.log(err)
         const parsedData = JSON.parse(res.text);
         this.setState({selectedProject: [...parsedData]})
       })
   }
+  createItem = (newItem) => {
+      request
+        .post('http://localhost:9292/projects/')
+        .type('form')
+        .send(newItem)
+        .end((err, newItem) => {
+          console.log(newItem, 'response from our post route')
+          // const parsedItem = JSON.parse(newItem.text)
+    })
+  }
+
+
+
+  DeleteItem = (e) => {
+
+    console.log(e.currentTarget.id, ' id of Task')
+    const id = e.currentTarget.id
+    console.log(id, ' id')
+    request
+      .delete('http://localhost:9292/projects/' + id)
+      .end((err, deletedItem) => {
+        console.log(deletedItem)
+      })
+  }
+
+
 
   render() {
     const projectList = this.state.projects.map((project, i) => {
@@ -44,7 +70,7 @@ class App extends Component {
     return (
       <div>
 
-      {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <ItemTimeline selectedProject={this.state.selectedProject}/>}
+      {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <ItemTimeline selectedProject={this.state.selectedProject} createItem={this.createItem}/>}
 
        
       </div>

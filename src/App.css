@@ -12,6 +12,31 @@
   color: white;
 }
 
+/*vis style*/
+
+div.vis-item.vis-range {
+    border-style: none;
+    border-radius: 12px !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+div.vis-item {
+    /*text-align: center;*/
+    border-radius: 12px;
+    color: #ffffff;
+    border-color: none;
+    border-width: 0;
+    background-color: #23b573;
+}
+div.vis-selected {
+    background-color: #3dd992 !important;
+
+}
+
+div.vis-delete {
+  visibility: hidden;
+}
+
 
 .App {
   text-align: center;

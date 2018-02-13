@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Myform from './DatePicker'
+
 class ItemEdit extends Component{
 	constructor(props){
 		super(props)
@@ -20,16 +22,13 @@ render(){
 	// console.log(this.props.editedItem)
 	// console.log(this.state)
 
-	  let start = this.state.start.toISOString().substring(0, 10)
-  	  let end = this.state.end.toISOString().substring(0, 10)
+	 
 
-	return(
+		return(
 		<div>
 			<form>
 				name: <input type="text" name="content" value={this.state.content} />
-				start date: <input type="date" name="start" value={start} />
-				end date: <input type="date" name="end" value={end} />
-				competed: <input type="text" name="completed" value={this.state.completed} />
+				<Myform value ={this.state}/>
 				<input type="hidden" name="id" value={this.state.id} />
 				<button>submit</button>
 			</form>
