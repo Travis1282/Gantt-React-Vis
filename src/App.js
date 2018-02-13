@@ -22,7 +22,6 @@ class App extends Component {
           if (err) console.log(err)
           const parsedData = JSON.parse(res.text);
           this.setState({projects: [...parsedData]})
-          console.log(this.state)
       })
   }
 
@@ -37,14 +36,27 @@ class App extends Component {
       })
   }
 
+  editItem = (item) => {
+    request
+      .put("http://localhost:9292/tasks/"+item.id)
+      .type('form')
+      .send(item)
+      .end((err, res) => {
+        if (err) console.log(err)
+        const parsedData = JSON.parse(res.text)
+        this.setState({selectedProject: [...parsedData.projTasks]})
+      })
+  }
+
   render() {
+    console.log("Selected projects in app.js ",this.state.selectedProject)
     const projectList = this.state.projects.map((project, i) => {
       return <li key={i} id={project.id} onClick={this.viewProject}> {project.content} </li>
     })
     return (
       <div>
 
-      {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <ItemTimeline selectedProject={this.state.selectedProject}/>}
+      {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <ItemTimeline editItem={this.editItem} selectedProject={this.state.selectedProject}/>}
 
        
       </div>
