@@ -47,7 +47,6 @@ class ItemTimeline extends Component {
   },
   onUpdate: (e) => {
     this.setState({editedItem: e})
-     // console.log(this.state.editedItem)
   },
   onAdd: (e) => {
 // post
@@ -57,13 +56,18 @@ class ItemTimeline extends Component {
   }
 }
 
+getEdits = (item) => {
+  this.props.editItem(item);
+  this.setState({editedItem: ""})
+  this.setState({items: ""})
+}
   render(){
-    // console.log(this.state.items)
+    console.log("ItemTimeLine state items", this.state.items, this.props.items, '<------- props')
   return (
     <div>
-      <Timeline options={this.options} items={this.state.items}/>
+      <Timeline options={this.options} items={this.props.selectedProject}/>
       Timeline
-      {this.state.editedItem ==="" ? null : <ItemEdit editedItem ={this.state.editedItem}/>}
+      {this.state.editedItem ==="" ? null : <ItemEdit editedItem ={this.state.editedItem} getEdits={this.getEdits}/>}
     </div>
   );
 
