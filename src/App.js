@@ -98,21 +98,19 @@ class App extends Component {
 
   }
   deleteProject = (e) => {
-    // console.log(e.currentTarget.parentNode.parentNode.id)
     // Gets the id of the li element the button is in
-    // const id = e.currentTarget.parentNode.parentNode.id
-    // request
-    //   .delete('http://localhost:9292/projects/'+id)
-    //   .end((err, res) => {
-    //     if (err) console.log(err)
-    //     if (res) console.log(res)
-        // const parsedData = JSON.parse(res.text)
-        // console.log(parsedData)
-      // })
+    const id = e.currentTarget.parentNode.parentNode.id
+    request
+      .delete('http://localhost:9292/projects/'+id)
+      .end((err, res) => {
+        if (err) console.log(err)
+        const parsedData = JSON.parse(res.text)
+        this.setState({projects: [...parsedData.projects]})
+      })
   }
 
   render() {
-    console.log("State in app.js ",this.state)
+    // console.log("State in app.js ",this.state)
     const projectList = this.state.projects.map((project, i) => {
       return <li key={i} id={project.id} >
                 <div className="project">
