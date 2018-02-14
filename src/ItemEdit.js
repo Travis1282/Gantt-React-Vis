@@ -38,7 +38,10 @@ class ItemEdit extends Component{
 		} 
 		this.props.getEdits(item)
 	}
-
+	submitDelete = (e) => {
+		e.preventDefault();
+		this.props.deleteItem(this.state.id)
+	}
 
 render(){
   let start = this.state.start.toISOString()
@@ -54,7 +57,9 @@ render(){
 				<input type="hidden" name="project_id" value={this.state.project_id}/>
 				<input type="hidden" name="belongs_to" value={this.state.belongs_to}/>
 				<button onClick={this.submitEdit}>submit</button>
+				<button onClick={this.submitDelete}>delete</button>
 			</form>
+
 		</div>
 		)
 	}

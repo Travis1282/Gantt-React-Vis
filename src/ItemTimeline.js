@@ -20,8 +20,7 @@ class ItemTimeline extends Component {
   constructor(props){
     super(props)
     this.state = {
-      editedItem: '',
-      items: this.props.selectedProject
+      editedItem: ''
     }
   }
 
@@ -67,7 +66,7 @@ getEdits = (item) => {
     <div>
       <Timeline options={this.options} items={this.props.selectedProject}/>
       Timeline
-      {this.state.editedItem ==="" ? null : <ItemEdit editedItem ={this.state.editedItem} getEdits={this.getEdits}/>}
+      {this.state.editedItem ==="" ? null : <ItemEdit editedItem ={this.state.editedItem} getEdits={this.getEdits} deleteItem={this.props.deleteItem} /> }
     </div>
   );
 

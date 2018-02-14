@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import ItemTimeline from './ItemTimeline';
 import request from "superagent";
@@ -48,15 +47,16 @@ class App extends Component {
 
 
 
-  DeleteItem = (e) => {
+  deleteItem = (item) => {
 
-    console.log(e.currentTarget.id, ' id of Task')
-    const id = e.currentTarget.id
-    console.log(id, ' id')
+    console.log(item)
     request
-      .delete('http://localhost:9292/projects/' + id)
+      .delete('http://localhost:9292/tasks/' + item)
       .end((err, deletedItem) => {
-        console.log(deletedItem)
+        console.log(err, deletedItem)
+        const parsedData = JSON.parse(deletedItem.text)
+        this.setState({selectedProject: [...parsedData.tasks]})
+
       })
   }
 
@@ -81,7 +81,7 @@ class App extends Component {
     })
     return (
       <div>
-      {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <ItemTimeline createItem={this.createItem} editItem={this.editItem} selectedProject={this.state.selectedProject}/>}
+      {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <ItemTimeline createItem={this.createItem} editItem={this.editItem} deleteItem={this.deleteItem} selectedProject={this.state.selectedProject}/>}
        
       </div>
     );
