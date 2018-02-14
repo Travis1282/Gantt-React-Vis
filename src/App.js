@@ -28,7 +28,8 @@ class App extends Component {
   }
 
   viewProject = (e) => {
-    const projId = e.currentTarget.id
+    const projId = e.currentTarget.parentNode.parentNode.id
+    // console.log(projId)
     request
       .get('http://localhost:9292/projects/'+projId+'/tasks')
       .end((err, res) => {
