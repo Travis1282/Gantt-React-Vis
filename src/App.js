@@ -11,6 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user_id: "",
       projects: [],
       selectedProject: "",
     }
@@ -22,6 +23,7 @@ class App extends Component {
           if (err) console.log(err)
           const parsedData = JSON.parse(res.text);
           this.setState({projects: [...parsedData]})
+          this.setState({user_id: 1})
       })
   }
 
@@ -75,14 +77,57 @@ class App extends Component {
         this.setState({selectedProject: [...parsedData.projTasks]})
       })
   }
+  createProject = () => {
+    const project = {
+      content: "New Project",
+      start: "",
+      end: "",
+      completed: false,
+      user_id: this.state.user_id
+    }
+    request
+      .post("http://localhost:9292/projects")
+      .type('form')
+      .send(project)
+      .end((err, res) => {
+        if (err) console.log(err)
+        console.log(res.text)
+        const parsedData = JSON.parse(res.text)
+        this.setState({projects: [...parsedData.projects]})
+      })
+
+  }
+  deleteProject = (e) => {
+    // console.log(e.currentTarget.parentNode.parentNode.id)
+    // Gets the id of the li element the button is in
+    // const id = e.currentTarget.parentNode.parentNode.id
+    // request
+    //   .delete('http://localhost:9292/projects/'+id)
+    //   .end((err, res) => {
+    //     if (err) console.log(err)
+    //     if (res) console.log(res)
+        // const parsedData = JSON.parse(res.text)
+        // console.log(parsedData)
+      // })
+  }
 
   render() {
-    console.log("Selected projects in app.js ",this.state.selectedProject)
+    console.log("State in app.js ",this.state)
     const projectList = this.state.projects.map((project, i) => {
-      return <li key={i} id={project.id} onClick={this.viewProject}> {project.content} </li>
+      return <li key={i} id={project.id} >
+                <div className="project">
+                  <h2 className="project-name" onClick={this.viewProject}>{project.content}</h2>
+                  <p className="date">Start Date: {project.start}</p>
+                  <p className="date">End Date: {project.end}</p>
+                  <button id="edit-btn">Edit Project</button>
+                  <button id="delete-btn" onClick={this.deleteProject}>Delete Project</button>
+                </div>
+             </li>
     })
     return (
-      <div>
+      <div className="App">
+      <button onClick={this.createProject}>+</button>
+        
       
       {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <ItemTimeline createItem={this.createItem} editItem={this.editItem} deleteItem={this.deleteItem} selectedProject={this.state.selectedProject}/>}
        
