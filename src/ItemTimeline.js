@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.js'
 import Timeline from 'react-visjs-timeline'
 import ItemEdit from './ItemEdit'
+import Header from './Header'
 
 
 
@@ -52,6 +53,9 @@ class ItemTimeline extends Component {
     this.setState({editedItem: e})
     this.props.createItem(e)
     // console.log(e)
+  },
+  on(rangechanged){
+    console.log(this.item.start, this.item.end)
   }
 }
 
@@ -61,9 +65,11 @@ getEdits = (item) => {
   this.setState({items: ""})
 }
   render(){
-    console.log("ItemTimeLine state items", this.state.items, this.props.items, '<------- props')
+    // console.log("ItemTimeLine state items", this.state.items, this.props.items, '<------- props')
+    console.log("ItemTimeLine Props", this.props)
   return (
     <div>
+      <Header id={this.props.selectedProject[0].project_id} createItem={this.props.createItem} />
       <Timeline options={this.options} items={this.props.selectedProject}/>
       Timeline
       {this.state.editedItem ==="" ? null : <ItemEdit editedItem ={this.state.editedItem} getEdits={this.getEdits} deleteItem={this.props.deleteItem} /> }

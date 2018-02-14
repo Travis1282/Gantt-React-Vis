@@ -5,6 +5,7 @@ import request from "superagent";
 import Task from "./Task"
 
 
+
 class App extends Component {
   
   constructor(props) {
@@ -35,13 +36,16 @@ class App extends Component {
       })
   }
   createItem = (newItem) => {
+    console.log("createItemCalled", newItem)
       request
-        .post('http://localhost:9292/projects/')
+        .post('http://localhost:9292/tasks')
         .type('form')
         .send(newItem)
         .end((err, newItem) => {
-          console.log(newItem, 'response from our post route')
-          // const parsedItem = JSON.parse(newItem.text)
+          console.log(err, newItem)
+          const parsedData = JSON.parse(newItem.text)
+          console.log(parsedData)
+          this.setState({selectedProject: [...parsedData.projTasks]})
     })
   }
 
@@ -59,8 +63,6 @@ class App extends Component {
 
       })
   }
-
-
 
   editItem = (item) => {
     request
@@ -81,6 +83,7 @@ class App extends Component {
     })
     return (
       <div>
+      
       {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <ItemTimeline createItem={this.createItem} editItem={this.editItem} deleteItem={this.deleteItem} selectedProject={this.state.selectedProject}/>}
        
       </div>

@@ -50,8 +50,8 @@ render(){
 		<div>
 			<form>
 				name: <input type="text" name="content" value={this.state.content} onChange={this.handleEditText}/>
-				start date: <input type="date" name="start" value={start.substring(0, 10)} onChange={this.handleEditDate}/>
-				end date: <input type="date" name="end" value={end.substring(0, 10)} onChange={this.handleEditDate}/>
+				start date: <input type="date" name="start" required="required" value={start.substring(0, 10)} onChange={this.handleEditDate}/>
+				end date: <input type="date" name="end" required="required" value={end.substring(0, 10)} onChange={this.handleEditDate}/>
 				competed: <input type="text" name="completed" value={this.state.completed} onChange={this.handleEditText}/>
 				<input type="hidden" name="id" value={this.state.id}/>
 				<input type="hidden" name="project_id" value={this.state.project_id}/>

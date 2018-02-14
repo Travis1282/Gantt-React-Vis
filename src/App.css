@@ -1,3 +1,8 @@
+input[type=date]::-webkit-inner-spin-button {
+   -webkit-appearance: none;
+   display: none;
+}
+
 #project {
   margin: 20px;
   background-color: blue;
