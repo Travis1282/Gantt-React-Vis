@@ -78,13 +78,14 @@ class App extends Component {
     })
   }
 
-  deleteItem = (item) => {
+  deleteItem = (id) => {
+    console.log(id)
     request
-      .delete('http://localhost:9292/tasks/' + item)
+      .delete('http://localhost:9292/tasks/' + id)
       .withCredentials()
-      .end((err, deletedItem) => {
-        console.log(err, deletedItem)
-        const parsedData = JSON.parse(deletedItem.text)
+      .end((err, res) => {
+        console.log(err, res)
+        const parsedData = JSON.parse(res.text)
         this.setState({selectedProject: [...parsedData.tasks]})
 
       })
