@@ -30,7 +30,7 @@ class Header extends Component{
 	render(){
 		return(
 			<div>
-				<div onClick={this.addNew} id="add"> + </div>
+				<div onClick={this.addNew} id="add"> +ADD NEW TASK </div>
 			</div>
 			)		
 	}

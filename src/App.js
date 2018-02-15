@@ -12,7 +12,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_id: "",
+      user_id: '',
       projects: [],
       selectedProject: "",
       editedProject: "",
@@ -20,15 +20,15 @@ class App extends Component {
   }
   componentDidMount() {
     request
-      .get('http://localhost:9292/users/1/projects')
+      .get('http://localhost:9292/users/projects')
+      .withCredentials()
       .end((err, res) => {
         if (err) {
-          console.log(err)
+          // console.log(err)
         } else {
-          console.log(res)
+          // console.log(res)
           const parsedData = JSON.parse(res.text);
           this.setState({projects: [...parsedData.projects]})
-          this.setState({user_id: 1})
         }
       })
   }
@@ -38,6 +38,7 @@ class App extends Component {
     const id = (this.state.projects[index].id)
     request
       .get('http://localhost:9292/projects/'+id+'/tasks')
+
       .end((err, res) => {
         if (err) console.log(err)
         console.log(res)
@@ -50,7 +51,7 @@ class App extends Component {
           const endDate = new Date(twoWeeks);
 
           const item = {
-            content: "New Task",
+            content: "First Task",
             start: new Date().toISOString().substring(0,10),
             end:  endDate.toISOString().substring(0,10),
             completed: false,
@@ -149,6 +150,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props)
     const projectList = this.state.projects.map((project, i) => {
       return <li key={i} id={i} >
                 <div className="project">
@@ -162,10 +164,12 @@ class App extends Component {
     })
     return (
       <div className="App">
-      <button onClick={this.createProject}>+</button>
         
-      
-      {this.state.selectedProject === "" ? <ul>{projectList}</ul> :<ItemTimeline createItem={this.createItem} editItem={this.editItem} deleteItem={this.deleteItem} selectedProject={this.state.selectedProject}/>}
+      {this.state.selectedProject === "" ?<div> <div onClick={this.createProject}>+ADD NEW PROJECT</div>
+        <ul>{projectList}</ul> </div> : 
+        <ItemTimeline createItem={this.createItem} editItem={this.editItem} deleteItem={this.deleteItem} selectedProject={this.state.selectedProject}/>
+      }
+
       {this.state.editedProject === "" ? null : <ProjectEdit editedProject={this.state.editedProject} editProject={this.editProject}/>}
 
       </div>
