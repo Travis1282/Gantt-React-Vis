@@ -28,7 +28,6 @@ class Header extends Component{
 
 	}
 	render(){
-		// console.log("Header Props ------------------->",this.props)
 		return(
 			<div>
 				<div onClick={this.addNew} id="add"> + </div>

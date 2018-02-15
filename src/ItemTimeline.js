@@ -52,7 +52,6 @@ class ItemTimeline extends Component {
 // post
     this.setState({editedItem: e})
     this.props.createItem(e)
-    // console.log(e)
   },
   on(rangechanged){
     console.log(this.item.start, this.item.end)
@@ -65,8 +64,6 @@ getEdits = (item) => {
   this.setState({items: ""})
 }
   render(){
-    // console.log("ItemTimeLine state items", this.state.items, this.props.items, '<------- props')
-    console.log("ItemTimeLine Props", this.props)
   return (
     <div>
       <Header id={this.props.selectedProject[0].project_id} createItem={this.props.createItem} />
