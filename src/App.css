@@ -42,6 +42,37 @@ div.vis-delete {
   visibility: hidden;
 }
 
+div.vis-drag-left {
+/*.draggingDots {*/
+  margin: 8px 10px;
+  width: 15px !important;
+  height: 15px !important;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 12px !important;
+}
+div.vis-drag-right {
+/*.draggingDots {*/
+  margin: 8px 15px;
+  width: 15px !important;
+  height: 15px !important;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 12px !important;
+}
+
+
+
+
+
+
+
+.containTasks {
+  height: 20px;
+  display: flex;
+  justify-content: space-between; 
+}
+
+
+
 
 .App {
   text-align: center;

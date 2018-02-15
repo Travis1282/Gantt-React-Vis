@@ -76,6 +76,11 @@ class App extends Component {
       })
   }
 
+
+
+
+
+
   render() {
     console.log("Selected projects in app.js ",this.state.selectedProject)
     const projectList = this.state.projects.map((project, i) => {
