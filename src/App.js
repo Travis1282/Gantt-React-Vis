@@ -3,6 +3,7 @@ import './App.css';
 import ItemTimeline from './ItemTimeline';
 import request from "superagent";
 import Task from "./Task"
+import ProjectEdit from "./ProjectEdit"
 
 
 
@@ -14,6 +15,7 @@ class App extends Component {
       user_id: "",
       projects: [],
       selectedProject: "",
+      editedProject: "",
     }
   }
   componentDidMount() {
@@ -29,7 +31,6 @@ class App extends Component {
 
   viewProject = (e) => {
     const projId = e.currentTarget.parentNode.parentNode.id
-    // console.log(projId)
     request
       .get('http://localhost:9292/projects/'+projId+'/tasks')
       .end((err, res) => {
@@ -39,7 +40,6 @@ class App extends Component {
       })
   }
   createItem = (newItem) => {
-    console.log("createItemCalled", newItem)
       request
         .post('http://localhost:9292/tasks')
         .type('form')
@@ -52,11 +52,7 @@ class App extends Component {
     })
   }
 
-
-
   deleteItem = (item) => {
-
-    console.log(item)
     request
       .delete('http://localhost:9292/tasks/' + item)
       .end((err, deletedItem) => {
@@ -92,7 +88,6 @@ class App extends Component {
       .send(project)
       .end((err, res) => {
         if (err) console.log(err)
-        console.log(res.text)
         const parsedData = JSON.parse(res.text)
         this.setState({projects: [...parsedData.projects]})
       })
@@ -100,7 +95,8 @@ class App extends Component {
   }
   deleteProject = (e) => {
     // Gets the id of the li element the button is in
-    const id = e.currentTarget.parentNode.parentNode.id
+    const index = e.currentTarget.parentNode.parentNode.id
+    const id = this.state.projects[index].id
     request
       .delete('http://localhost:9292/projects/'+id)
       .end((err, res) => {
@@ -109,16 +105,33 @@ class App extends Component {
         this.setState({projects: [...parsedData.projects]})
       })
   }
+  openEdit = (e) => {
+    const index = e.currentTarget.parentNode.parentNode.id
+    const project = this.state.projects[index]
+    this.setState({editedProject: project})
+  }
+  editProject = (project) => {
+    const id = project.id
+    request
+      .put('http://localhost:9292/projects/'+id)
+      .type('form')
+      .send(project)
+      .end((err, res) => {
+        if (err) console.log(err)
+        const parsedData = JSON.parse(res.text)
+        this.setState({projects: [...parsedData.projects]})
+        this.setState({editedProject: ""})
+      })
+  }
 
   render() {
-    // console.log("State in app.js ",this.state)
     const projectList = this.state.projects.map((project, i) => {
-      return <li key={i} id={project.id} >
+      return <li key={i} id={i} >
                 <div className="project">
                   <h2 className="project-name" onClick={this.viewProject}>{project.content}</h2>
                   <p className="date">Start Date: {project.start}</p>
                   <p className="date">End Date: {project.end}</p>
-                  <button id="edit-btn">Edit Project</button>
+                  <button id="edit-btn" onClick={this.openEdit}>Edit Project</button>
                   <button id="delete-btn" onClick={this.deleteProject}>Delete Project</button>
                 </div>
              </li>
@@ -128,8 +141,9 @@ class App extends Component {
       <button onClick={this.createProject}>+</button>
         
       
-      {this.state.selectedProject === "" ? <ul>{projectList}</ul> : <ItemTimeline createItem={this.createItem} editItem={this.editItem} deleteItem={this.deleteItem} selectedProject={this.state.selectedProject}/>}
-       
+      {this.state.selectedProject === "" ? <ul>{projectList}</ul> :<ItemTimeline createItem={this.createItem} editItem={this.editItem} deleteItem={this.deleteItem} selectedProject={this.state.selectedProject}/>}
+      {this.state.editedProject === "" ? null : <ProjectEdit editedProject={this.state.editedProject} editProject={this.editProject}/>}
+
       </div>
     );
   }

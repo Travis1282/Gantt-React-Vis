@@ -84,7 +84,7 @@ li{
   background-color: lightblue;
   border: 1px solid black;
   border-radius: 10%;
-  height: 20vh;
+  height: 30vh;
 }
 .project h2{
   margin: 0;
@@ -95,6 +95,7 @@ li{
   margin-top: 5%;
 }
 .project button{
+  margin: 0 auto;
   width: 40%;
 }
 @keyframes App-logo-spin {
