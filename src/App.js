@@ -39,12 +39,26 @@ class App extends Component {
     request
       .get('http://localhost:9292/projects/'+id+'/tasks')
       .end((err, res) => {
-        if (err) {
-          console.log(err)
+        if (err) console.log(err)
+        console.log(res)
+        const parsedData = JSON.parse(res.text)
+        
+        // If the project doesn't have tasks create a task before loading
+        if (parsedData.status.number_of_tasks === 0 ) {
+          const now = new Date();
+          const twoWeeks = now.setDate(now.getDate() +14);
+          const endDate = new Date(twoWeeks);
+
+          const item = {
+            content: "New Task",
+            start: new Date().toISOString().substring(0,10),
+            end:  endDate.toISOString().substring(0,10),
+            completed: false,
+            belongs_to: 0,
+            project_id: id
+          }
+          this.createItem(item)
         } else {
-          console.log(res)
-          const parsedData = JSON.parse(res.text)
-          console.log(parsedData)
           this.setState({selectedProject: [...parsedData.tasks]})
         }
       })
