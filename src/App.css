@@ -76,6 +76,7 @@ div.vis-drag-right {
 
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -97,7 +98,37 @@ div.vis-drag-right {
 .App-intro {
   font-size: large;
 }
-
+ul{
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+li{
+  width: 45vw;
+  margin: 2vw;
+}
+.project{
+  display: flex;
+  flex-direction: column;
+  background-color: lightblue;
+  border: 1px solid black;
+  /*border-radius: 2%;*/
+  height: 30vh;
+}
+.project h2{
+  margin: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.project p{
+  margin-top: 5%;
+}
+.project button{
+  margin: 0 auto;
+  width: 40%;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

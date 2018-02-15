@@ -70,8 +70,16 @@ class ItemTimeline extends Component {
       // this.setState({editedItem: ""})
       // this.setState({item: ""})
 
-    }
+  },
+  onUpdate: (e) => {
+    this.setState({editedItem: e})
+  },
+  onAdd: (e) => {
+// post
+    this.setState({editedItem: e})
+    this.props.createItem(e)
   }
+}
 
 
 
@@ -90,14 +98,6 @@ class ItemTimeline extends Component {
   }
 
   render(){
-
-    console.log(this.state, ' this is this.state')
-    // console.log("ItemTimeLine state items", this.state.items, this.props.items, '<------- props')
-    // console.log("ItemTimeLine Props", this.props)
-    // this.props.selectedProject
-    // Timeline.on(event, callback) => {
-    //   console.log(event, callback)
-    // }
 
     return (
       <div>

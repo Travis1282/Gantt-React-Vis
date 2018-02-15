@@ -11,9 +11,9 @@ class Header extends Component{
 	addNew = (e) => {
 	e.preventDefault();
 
-			let now = new Date();
-			let twoWeeks = now.setDate(now.getDate() +14);
-			let endDate = new Date(twoWeeks);
+			const now = new Date();
+			const twoWeeks = now.setDate(now.getDate() +14);
+			const endDate = new Date(twoWeeks);
 
 			const item = {
 			content: "New Task",
@@ -28,10 +28,9 @@ class Header extends Component{
 
 	}
 	render(){
-		console.log("Header Props ------------------->",this.props)
 		return(
 			<div>
-				<div onClick={this.addNew} id="add"> + </div>
+				<div onClick={this.addNew} id="add"> +ADD NEW TASK </div>
 			</div>
 			)		
 	}
