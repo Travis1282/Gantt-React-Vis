@@ -17,6 +17,10 @@ input[type=date]::-webkit-inner-spin-button {
   color: white;
 }
 
+#timeline{
+  position: absolute
+}
+
 /*vis style*/
 
 div.vis-item.vis-range {
@@ -32,6 +36,9 @@ div.vis-item {
     border-color: none;
     border-width: 0;
     background-color: #23b573;
+}
+div.div.vis-item.vis-range {
+  z-index: 1;
 }
 div.vis-selected {
     background-color: #3dd992 !important;

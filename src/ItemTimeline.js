@@ -8,6 +8,7 @@ import Header from './Header'
 
 
 
+
   const getItemStyle = () => ({
       width: ``+ this.length +``,
       background: 'lightgreen'
@@ -48,37 +49,30 @@ class ItemTimeline extends Component {
       return '<div class="containTasks"><div class="draggingDots"></div><div>'+ item.content +'</div><div class="draggingDots"></div></div>';
       // return '<div>'+ item.content +'</div>';
     },
-
     onUpdate: (e) => {
       this.setState({editedItem: e})
     },
     onMove: (task, callback) => {
-      // e.preventDefault();
-      // console.log(
-      //   task.start, task.end, task.id
-      //   )
         const item = {
-          content: this.props.content,
+          content: task.content,
           start: task.start.toISOString().substring(0,10),
           end: task.end.toISOString().substring(0,10),
-          completed: this.props.completed,
-          id: this.props.id,
-          belongs_to: this.props.belongs_to,
-          project_id: this.props.project_id,
+          completed: task.completed,
+          id: task.id,
+          belongs_to: task.belongs_to,
+          project_id: task.project_id,
         } 
+        console.log(item)
       this.props.editItem(item);
-      // this.setState({editedItem: ""})
-      // this.setState({item: ""})
-
-  },
-  onUpdate: (e) => {
-    this.setState({editedItem: e})
-  },
-  onAdd: (e) => {
-// post
-    this.setState({editedItem: e})
-    this.props.createItem(e)
-  }
+    },
+    onUpdate: (e) => {
+      this.setState({editedItem: e})
+    },
+    onAdd: (e) => {
+  // post
+      this.setState({editedItem: e})
+      this.props.createItem(e)
+    }
 }
 
 
@@ -101,11 +95,10 @@ class ItemTimeline extends Component {
 
     return (
       <div>
-        <h1 onClick={this.clickHandler}>Hi</h1>
         <Header id={this.props.selectedProject[0].project_id} createItem={this.props.createItem} />
         <Timeline options={this.options}  items={this.props.selectedProject} />
-        {this.state.editedItem ==="" ? null : <ItemEdit editedItem ={this.state.editedItem} getEdits={this.getEdits} deleteItem={this.props.deleteItem} /> }
-      </div>
+              {this.state.editedItem ==="" ? null : <ItemEdit editedItem ={this.state.editedItem} getEdits={this.getEdits} deleteItem={this.props.deleteItem} /> }
+        </div>
     );
 
   }
