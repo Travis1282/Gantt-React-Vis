@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-reveal": "^1.1.1",
     "react-scripts": "1.1.1",
     "react-visjs-timeline": "^1.4.0",
     "superagent": "^3.8.2",

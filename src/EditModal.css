@@ -8,6 +8,7 @@
   z-index: 1;
   overflow: auto;
   display: block;
+  z-index: 3;
 }
 #modal-content {
 	padding-top: 10%;
@@ -15,6 +16,7 @@
 #modal-content input{
 	height: 50px;
 	width: 200px;
+  z-index: 4;
 }
 #modal-content button{
 	height: 100px;
