@@ -29,6 +29,7 @@ class App extends Component {
           // console.log(res)
           const parsedData = JSON.parse(res.text);
           this.setState({projects: [...parsedData.projects]})
+          this.setState({user_id: parsedData.user_id})
         }
       })
   }
@@ -80,6 +81,7 @@ class App extends Component {
   deleteItem = (item) => {
     request
       .delete('http://localhost:9292/tasks/' + item)
+      .withCredentials()
       .end((err, deletedItem) => {
         console.log(err, deletedItem)
         const parsedData = JSON.parse(deletedItem.text)
@@ -122,10 +124,14 @@ class App extends Component {
     // Gets the id of the li element the button is in
     const index = e.currentTarget.parentNode.parentNode.id
     const id = this.state.projects[index].id
+
+    console.log(index)
+    console.log(id)
     request
       .delete('http://localhost:9292/projects/'+id)
       .end((err, res) => {
         if (err) console.log(err)
+        console.log(res)
         const parsedData = JSON.parse(res.text)
         this.setState({projects: [...parsedData.projects]})
       })
@@ -155,7 +161,7 @@ class App extends Component {
 
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     const projectList = this.state.projects.map((project, i) => {
       return <li key={i} id={i} >
                 <div className="project">
