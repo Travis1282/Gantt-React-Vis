@@ -22,23 +22,34 @@ class App extends Component {
     request
       .get('http://localhost:9292/users/1/projects')
       .end((err, res) => {
-          if (err) console.log(err)
+        if (err) {
+          console.log(err)
+        } else {
+          console.log(res)
           const parsedData = JSON.parse(res.text);
-          this.setState({projects: [...parsedData]})
+          this.setState({projects: [...parsedData.projects]})
           this.setState({user_id: 1})
+        }
       })
   }
 
   viewProject = (e) => {
-    const projId = e.currentTarget.parentNode.parentNode.id
+    const index = e.currentTarget.parentNode.parentNode.id
+    const id = (this.state.projects[index].id)
     request
-      .get('http://localhost:9292/projects/'+projId+'/tasks')
+      .get('http://localhost:9292/projects/'+id+'/tasks')
       .end((err, res) => {
-        if (err) console.log(err)
-        const parsedData = JSON.parse(res.text);
-        this.setState({selectedProject: [...parsedData]})
+        if (err) {
+          console.log(err)
+        } else {
+          console.log(res)
+          const parsedData = JSON.parse(res.text)
+          console.log(parsedData)
+          this.setState({selectedProject: [...parsedData.tasks]})
+        }
       })
   }
+
   createItem = (newItem) => {
       request
         .post('http://localhost:9292/tasks')
@@ -47,7 +58,6 @@ class App extends Component {
         .end((err, newItem) => {
           console.log(err, newItem)
           const parsedData = JSON.parse(newItem.text)
-          console.log(parsedData)
           this.setState({selectedProject: [...parsedData.projTasks]})
     })
   }

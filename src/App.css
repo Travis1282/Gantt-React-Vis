@@ -75,7 +75,7 @@ ul{
   flex-wrap: wrap;
 }
 li{
-  width: 20vw;
+  width: 45vw;
   margin: 2vw;
 }
 .project{
@@ -83,7 +83,7 @@ li{
   flex-direction: column;
   background-color: lightblue;
   border: 1px solid black;
-  border-radius: 10%;
+  /*border-radius: 2%;*/
   height: 30vh;
 }
 .project h2{
