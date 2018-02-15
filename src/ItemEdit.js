@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Zoom from 'react-reveal/Zoom';
-import OverlayController from 'react-overlay-controller';
 
 
 class ItemEdit extends Component{
@@ -52,7 +50,6 @@ render(){
 		return(
 		<div>
 			<div id="modal">
-				<Zoom>
 					<div id="modal-content">
 						<form>
 							name: <input type="text" name="content" value={this.state.content} onChange={this.handleEditText}/>
@@ -66,7 +63,6 @@ render(){
 							<button onClick={this.submitDelete}>delete</button>
 						</form>
 					</div>
-				</Zoom>
 			</div>
 
 		</div>

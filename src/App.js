@@ -87,7 +87,6 @@ class App extends Component {
         console.log(err, res)
         const parsedData = JSON.parse(res.text)
         this.setState({selectedProject: [...parsedData.tasks]})
-
       })
   }
 
