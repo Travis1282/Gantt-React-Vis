@@ -9,8 +9,8 @@ It's built with React and uses reactvis and react-vis-timeline to display projec
 ## What's the plan
 The larger goal is to impliment an app that will allow for interactions between tasks, creating timeline dependencies so that when one project's timeline changes all of it's dependents are updated. 
 
-<img src="/readmeimgs/ProjectList.png">
-<img src="/readmeimgs/ProjectDetails.png">
+<img src="readmeimgs/ProjectList.png">
+<img src="readmeimgs/ProjectDetails.png">
 <img src="readmeimgs/TaskList.png">
 <img src="readmeimgs/TaskDetails.png">
 <img src="readmeimgs/DependenciesView.png">
