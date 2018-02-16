@@ -176,8 +176,8 @@ class App extends Component {
                     <p className="date">Start Date: {project.start}</p>
                     <p className="date">End Date: {project.end}</p>
                   <div className="spacer"></div>
-                  <div class="col-md-3 col-sm-3 col-xs-6"> <a href="#" class="btn btn-sm animated-button victoria-blue"onClick={this.openEdit}>Edit Project</a> </div>
-                  <div class="col-md-3 col-sm-3 col-xs-6"> <a href="#" class="btn btn-sm animated-button victoria-red"onClick={this.deleteProject}>Delete Project</a> </div>
+                  <div className="col-md-3 col-sm-3 col-xs-6"> <a href="#" className="btn btn-sm animated-button victoria-blue"onClick={this.openEdit}>Edit Project</a> </div>
+                  <div className="col-md-3 col-sm-3 col-xs-6"> <a href="#" className="btn btn-sm animated-button victoria-red"onClick={this.deleteProject}>Delete Project</a> </div>
                </div>
              </div>
       )
@@ -185,7 +185,7 @@ class App extends Component {
     })
     return (
       <div className="App">
-      {this.state.selectedProject === "" ? <div> <ProjectHeader createItem={this.state.createProject} /> 
+      {this.state.selectedProject === "" ? <div> <ProjectHeader createProject={this.createProject} /> 
 
       <ul>{projectList}</ul> </div> : 
         <ItemTimeline removeProject={this.removeProject} createItem={this.createItem} editItem={this.editItem} deleteItem={this.deleteItem} selectedProject={this.state.selectedProject}/>
