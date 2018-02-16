@@ -49,9 +49,6 @@ class ItemTimeline extends Component {
       return '<div class="containTasks"><div class="draggingDots"></div><div>'+ item.content +'</div><div class="draggingDots"></div></div>';
       // return '<div>'+ item.content +'</div>';
     },
-    onUpdate: (e) => {
-      this.setState({editedItem: e})
-    },
     onMove: (task, callback) => {
         const item = {
           content: task.content,
@@ -81,9 +78,6 @@ class ItemTimeline extends Component {
   clickHandler = (item) => {
   }
 
-  onUpdate = (e) => {
-    console.log(e)
-  }
 
   getEdits = (item) => {
     this.props.editItem(item);

@@ -4,8 +4,11 @@ import ItemTimeline from './ItemTimeline';
 import request from "superagent";
 import Task from "./Task"
 import ProjectEdit from "./ProjectEdit"
-
-
+import ReactDOM from 'react-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
 class App extends Component {
   
@@ -122,7 +125,7 @@ class App extends Component {
   }
   deleteProject = (e) => {
     // Gets the id of the li element the button is in
-    const index = e.currentTarget.parentNode.parentNode.id
+    const index = e.currentTarget.parentNode.parentNode.parentNode.id
     const id = this.state.projects[index].id
 
     console.log(index)
@@ -137,7 +140,8 @@ class App extends Component {
       })
   }
   openEdit = (e) => {
-    const index = e.currentTarget.parentNode.parentNode.id
+    console.log(e.currentTarget.parentNode.parentNode.parentNode.id)
+    const index = e.currentTarget.parentNode.parentNode.parentNode.id
     const project = this.state.projects[index]
     this.setState({editedProject: project})
   }
@@ -157,21 +161,20 @@ class App extends Component {
 
 
 
-
-
-
   render() {
     // console.log(this.props)
     const projectList = this.state.projects.map((project, i) => {
-      return <li key={i} id={i} >
+      return <div key={i} id={i} className="projectContainer">
                 <div className="project">
                   <h2 className="project-name" onClick={this.viewProject}>{project.content}</h2>
-                  <p className="date">Start Date: {project.start}</p>
-                  <p className="date">End Date: {project.end}</p>
-                  <button id="edit-btn" onClick={this.openEdit}>Edit Project</button>
-                  <button id="delete-btn" onClick={this.deleteProject}>Delete Project</button>
-                </div>
-             </li>
+                    <p className="date">Start Date: {project.start}</p>
+                    <p className="date">End Date: {project.end}</p>
+                  <div className="spacer"></div>
+                  <div class="col-md-3 col-sm-3 col-xs-6"> <a href="#" class="btn btn-sm animated-button victoria-blue"onClick={this.openEdit}>Edit Project</a> </div>
+                  <div class="col-md-3 col-sm-3 col-xs-6"> <a href="#" class="btn btn-sm animated-button victoria-red"onClick={this.deleteProject}>Delete Project</a> </div>
+               </div>
+             </div>
+
     })
     return (
       <div className="App">

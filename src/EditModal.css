@@ -1,5 +1,5 @@
 #modal {
-  background-color: rgba(100, 100, 100, 1);
+  background-color: rgba(100, 100, 100, 0.5);
   position: fixed;
   top: 0;
   left: 0;
@@ -11,10 +11,17 @@
   z-index: 3;
 }
 #modal-content {
-	padding-top: 10%;
+  background-color: #eaeaea;
+  padding: 20px;
+  width: 300px;
+  margin: 20px;
+  border-radius: 20px;
+  flex:flex-basis;
+  padding-bottom: 40px;
 }
 #modal-content input{
-	height: 50px;
+	height: 30px;
+  border-radius: 20px;
 	width: 200px;
   z-index: 4;
 }
@@ -26,7 +33,6 @@
 	margin-top: 20px;
 }
 form {
-  width: 50%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
