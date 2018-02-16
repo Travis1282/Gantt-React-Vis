@@ -31,8 +31,7 @@ class Header extends Component{
 		return(
 			<div className="header">
 				<img className="logo" src="./whirrLogo.png"/>
-				<div className="addNew"  onClick={this.addNew} id="add">+</div>
-				<div className="addNew"  onClick={this.props.removeProject} id="add">&#8592;</div>
+				<div className="addNew"  onClick={this.props.createProject} id="add">+</div>
 			</div>
 			)		
 	}

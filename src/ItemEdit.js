@@ -51,6 +51,7 @@ render(){
 		<div>
 			<div id="modal">
 					<div id="modal-content">
+						<div class="col-md-3 col-sm-3 col-xs-6"> <a href="#" class="btn btn-sm animated-button victoria-green" onClick={this.props.removeModal} style={{width: 15 + 'px', height: 15 + 'px', borderRadius: 50 +'px', float:'right',  margin: '-10px -10px 0 0'}}>X</a> </div>
 						<form>
 							name: <input type="text" name="content" value={this.state.content} onChange={this.handleEditText}/>
 							start date: <input type="date" name="start" required="required" value={start.substring(0, 10)} onChange={this.handleEditDate}/>

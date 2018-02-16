@@ -5,18 +5,6 @@ import ItemEdit from './ItemEdit'
 import Header from './Header'
 
 
-
-
-
-
-  const getItemStyle = () => ({
-      width: ``+ this.length +``,
-      background: 'lightgreen'
-      // background: isDragging ? 'lightgreen' : 'grey',
-  });
-
-// style={getItemStyle()}
-
 class ItemTimeline extends Component {
 
   constructor(props){
@@ -32,7 +20,7 @@ class ItemTimeline extends Component {
 
   options = {
     width: '100%',
-    height: '500px',
+    height: '100vh',
     stack: false,
     showMajorLabels: true,
     showCurrentTime: true,
@@ -74,10 +62,9 @@ class ItemTimeline extends Component {
 
 
 
-
-  clickHandler = (item) => {
+  removeModal = () => {
+    this.setState({editedItem: ""})
   }
-
 
   getEdits = (item) => {
     this.props.editItem(item);
@@ -89,9 +76,9 @@ class ItemTimeline extends Component {
 
     return (
       <div>
-        <Header id={this.props.selectedProject[0].project_id} createItem={this.props.createItem} />
+        <Header removeProject={this.props.removeProject} id={this.props.selectedProject[0].project_id} createItem={this.props.createItem} />
         <Timeline options={this.options}  items={this.props.selectedProject} />
-              {this.state.editedItem ==="" ? null : <ItemEdit editedItem ={this.state.editedItem} getEdits={this.getEdits} deleteItem={this.props.deleteItem} /> }
+              {this.state.editedItem ==="" ? null : <ItemEdit editedItem ={this.state.editedItem}  removeModal={this.removeModal} getEdits={this.getEdits} deleteItem={this.props.deleteItem} /> }
         </div>
     );
 

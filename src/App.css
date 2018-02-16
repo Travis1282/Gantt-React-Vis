@@ -2,6 +2,23 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 
 
+.header{
+      background-color: #7d7d7d;
+      height: 65px;
+}
+.logo{
+    margin: 15px 20px;
+}
+.addNew{
+    float: right;
+    font-size: 50px;
+    color: white;
+    margin: 0 15px;
+}
+
+
+
+
 .projectCards{
     width: 200px;
     margin: 20px;
@@ -72,6 +89,10 @@ input[type=date]::-webkit-inner-spin-button {
 }
 
 /*vis style*/
+
+div.vis-time-axis.vis-foreground {
+    background: #dbdbdb;
+}
 
 div.vis-item.vis-range {
     border-style: none;

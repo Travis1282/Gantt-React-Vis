@@ -4,11 +4,7 @@ import ItemTimeline from './ItemTimeline';
 import request from "superagent";
 import Task from "./Task"
 import ProjectEdit from "./ProjectEdit"
-import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import ProjectHeader from "./ProjectHeader"
 
 class App extends Component {
   
@@ -159,12 +155,19 @@ class App extends Component {
       })
   }
 
+  removeModal = () => {
+    this.setState({editedProject: ""})
+  }
+  removeProject = () =>{
+    this.setState({selectedProject:""})
+  }
 
 
   render() {
     // console.log(this.props)
     const projectList = this.state.projects.map((project, i) => {
-      return <div key={i} id={i} className="projectContainer">
+      return  (     
+            <div key={i} id={i} className="projectContainer">
                 <div className="project">
                   <h2 className="project-name" onClick={this.viewProject}>{project.content}</h2>
                     <p className="date">Start Date: {project.start}</p>
@@ -174,17 +177,18 @@ class App extends Component {
                   <div class="col-md-3 col-sm-3 col-xs-6"> <a href="#" class="btn btn-sm animated-button victoria-red"onClick={this.deleteProject}>Delete Project</a> </div>
                </div>
              </div>
+      )
 
     })
     return (
       <div className="App">
-        
-      {this.state.selectedProject === "" ?<div> <div onClick={this.createProject}>+ADD NEW PROJECT</div>
-        <ul>{projectList}</ul> </div> : 
-        <ItemTimeline createItem={this.createItem} editItem={this.editItem} deleteItem={this.deleteItem} selectedProject={this.state.selectedProject}/>
+      {this.state.selectedProject === "" ? <div> <ProjectHeader createItem={this.state.createProject} /> 
+
+      <ul>{projectList}</ul> </div> : 
+        <ItemTimeline removeProject={this.removeProject} createItem={this.createItem} editItem={this.editItem} deleteItem={this.deleteItem} selectedProject={this.state.selectedProject}/>
       }
 
-      {this.state.editedProject === "" ? null : <ProjectEdit editedProject={this.state.editedProject} editProject={this.editProject}/>}
+      {this.state.editedProject === "" ? null : <ProjectEdit editedProject={this.state.editedProject} removeModal={this.removeModal} editProject={this.editProject}/>}
 
       </div>
     );
