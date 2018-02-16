@@ -6,6 +6,9 @@ import Task from "./Task"
 import ProjectEdit from "./ProjectEdit"
 import ProjectHeader from "./ProjectHeader"
 
+const url= "https://warm-cliffs-32185.herokuapp.com";
+
+
 class App extends Component {
   
   constructor(props) {
@@ -19,7 +22,7 @@ class App extends Component {
   }
   componentDidMount() {
     request
-      .get('http://localhost:9292/users/projects')
+      .get(url+'/users/projects')
       .withCredentials()
       .end((err, res) => {
         if (err) {
@@ -37,7 +40,7 @@ class App extends Component {
     const index = e.currentTarget.parentNode.parentNode.id
     const id = (this.state.projects[index].id)
     request
-      .get('http://localhost:9292/projects/'+id+'/tasks')
+      .get(url+'/'+id+'/tasks')
 
       .end((err, res) => {
         if (err) console.log(err)
@@ -67,7 +70,7 @@ class App extends Component {
 
   createItem = (newItem) => {
       request
-        .post('http://localhost:9292/tasks')
+        .post(url+'tasks')
         .type('form')
         .send(newItem)
         .end((err, newItem) => {
@@ -80,7 +83,7 @@ class App extends Component {
   deleteItem = (id) => {
     console.log(id)
     request
-      .delete('http://localhost:9292/tasks/' + id)
+      .delete(url'/tasks/' + id)
       .withCredentials()
       .end((err, res) => {
         console.log(err, res)
@@ -91,7 +94,7 @@ class App extends Component {
 
   editItem = (item) => {
     request
-      .put("http://localhost:9292/tasks/"+item.id)
+      .put(url'/tasks/'+item.id)
       .type('form')
       .send(item)
       .end((err, res) => {
@@ -109,7 +112,7 @@ class App extends Component {
       user_id: this.state.user_id
     }
     request
-      .post("http://localhost:9292/projects")
+      .post(url'/projects")
       .type('form')
       .send(project)
       .end((err, res) => {
@@ -127,7 +130,7 @@ class App extends Component {
     console.log(index)
     console.log(id)
     request
-      .delete('http://localhost:9292/projects/'+id)
+      .delete(url+'/'+id)
       .end((err, res) => {
         if (err) console.log(err)
         console.log(res)
@@ -144,7 +147,7 @@ class App extends Component {
   editProject = (project) => {
     const id = project.id
     request
-      .put('http://localhost:9292/projects/'+id)
+      .put(url+'/projects/'+id)
       .type('form')
       .send(project)
       .end((err, res) => {
