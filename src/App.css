@@ -234,6 +234,7 @@ a.animated-button.victoria-red:after {
   -ms-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
   -webkit-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
   transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+  z-index: 3;
 }
 a.animated-button.victoria-orange {
     border: 2px solid #fbb03b;
@@ -247,6 +248,7 @@ a.animated-button.victoria-orange:after {
   -ms-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
   -webkit-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
   transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+  z-index: 3;
 }
 
 a.animated-button.victoria-green {
@@ -261,6 +263,7 @@ a.animated-button.victoria-green:after {
   -ms-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
   -webkit-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
   transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+  z-index: 3;
 }
 
 
