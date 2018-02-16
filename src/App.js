@@ -83,7 +83,7 @@ class App extends Component {
   deleteItem = (id) => {
     console.log(id)
     request
-      .delete(url'/tasks/' + id)
+      .delete(url+'/tasks/' + id)
       .withCredentials()
       .end((err, res) => {
         console.log(err, res)
@@ -94,7 +94,7 @@ class App extends Component {
 
   editItem = (item) => {
     request
-      .put(url'/tasks/'+item.id)
+      .put(url+'/tasks/'+item.id)
       .type('form')
       .send(item)
       .end((err, res) => {
@@ -112,7 +112,7 @@ class App extends Component {
       user_id: this.state.user_id
     }
     request
-      .post(url'/projects")
+      .post(url+'/projects')
       .type('form')
       .send(project)
       .end((err, res) => {
